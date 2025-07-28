@@ -1,0 +1,40 @@
+<section class="form-container">
+  <h2>Submit Your Feedback</h2>
+  
+  {{#if error}}
+    <div class="alert error">
+      {{error}}
+    </div>
+  {{/if}}
+
+  <form action="/feedback" method="POST">
+    <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" value="{{values.name}}" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="{{values.email}}" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="rating">Rating (1-5)</label>
+      <select id="rating" name="rating" required>
+        <option value="">Select a rating</option>
+        <option value="1" {{#if (eq values.rating '1')}}selected{{/if}}>1 - Poor</option>
+        <option value="2" {{#if (eq values.rating '2')}}selected{{/if}}>2 - Fair</option>
+        <option value="3" {{#if (eq values.rating '3')}}selected{{/if}}>3 - Good</option>
+        <option value="4" {{#if (eq values.rating '4')}}selected{{/if}}>4 - Very Good</option>
+        <option value="5" {{#if (eq values.rating '5')}}selected{{/if}}>5 - Excellent</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="message">Your Feedback</label>
+      <textarea id="message" name="message" rows="5" required>{{values.message}}</textarea>
+    </div>
+    
+    <button type="submit" class="btn">Submit Feedback</button>
+  </form>
+</section>
